@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Cart;
-use App\Orders;
 use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
@@ -21,7 +19,6 @@ class CartController extends Controller
                     ->get();
         $total = 0;
         foreach($cartItems as $k => $v){
-     
             $price = $v->price;
             $qty = $v->qty;
             $total += $price * $qty;
@@ -69,7 +66,6 @@ class CartController extends Controller
                   ->delete();
 
         return redirect('/cart');
-
     }
 
 

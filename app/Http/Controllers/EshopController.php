@@ -19,5 +19,4 @@ class EshopController extends Controller
         return view('frontend.eshop',compact("product_list","user")); 
     }
 
-
 }

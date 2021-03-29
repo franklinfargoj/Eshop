@@ -1,3 +1,10 @@
+<style>
+table, th, td {
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -26,18 +33,18 @@
                         <tr>
                             <td>{{ $val->order_id }}</td>
                             <td>{{ $val->customer }}</td> 
-                            <td>{{ $val->customer }}</td> 
-
+                          
+                            <td>
                             @foreach (json_decode($val->prod_quant) as $product=>$qty)
                             @foreach ($products_list as $k=>$v)
 
                             @if($k==$product)
-                            <td>{{ $v }}={{ $qty }}</td>
+                            {{ $v }}={{ $qty }},
                             @endif
                             
                             @endforeach
                             @endforeach
-
+                            </td>
                             <td>{{ $val->total_amt }}</td>
                         </tr>
                         @endforeach
