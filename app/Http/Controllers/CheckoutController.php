@@ -30,7 +30,6 @@ class CheckoutController extends Controller
         $order = new Orders;
         $order->user_id = Auth::id(); 
         $order->amount = $total;
-
         $order->product_quantity = json_encode($arr);
         $order->save();
 
