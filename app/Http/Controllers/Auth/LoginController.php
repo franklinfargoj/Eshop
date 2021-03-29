@@ -45,12 +45,6 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         $user = Auth::user();
-
-        // dd($user);
-
-        // if ( $user->isAdmin() ) {// do your magic here
-        //     return redirect()->route('dashboard');
-        // }
         return redirect('/eshop_list');
     }
 
@@ -58,8 +52,5 @@ class LoginController extends Controller
         Auth::logout();
         return redirect('/login');
     }
-
-
-
 
 }

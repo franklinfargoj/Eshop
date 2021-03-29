@@ -5,6 +5,15 @@ table, th, td {
 }
 </style>
 
+
+@if (Auth::check())    
+<div>
+
+<a href="{{ url('admlogout') }}"> <h5>Logout</h5></a>
+<a href="{{ url('admdashbd') }}"> <h5>Dashboard</h5></a>
+</div>
+@endif
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

@@ -11,25 +11,36 @@
 |
 */
 
+Auth::routes();
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/eshop_list');
 });
 
+Route::get('/home', 'EshopController@index')->name('home');
+
 //back end
-Route::get('/show_cat', 'CategoryController@index')->name('show_cat');
-Route::get('/add_cat', 'CategoryController@create')->name('add_cat');
-Route::post('/save_cat', 'CategoryController@store')->name('save_cat');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/show_cat', 'CategoryController@index')->name('show_cat');
+    Route::get('/add_cat', 'CategoryController@create')->name('add_cat');
+    Route::post('/save_cat', 'CategoryController@store')->name('save_cat');
 
-Route::get('/show_prod', 'ProductController@index')->name('show_prod');
-Route::get('/add_prod', 'ProductController@create')->name('add_prod');
-Route::post('/save_prod', 'ProductController@store')->name('save_prod');
+    Route::get('/show_prod', 'ProductController@index')->name('show_prod');
+    Route::get('/add_prod', 'ProductController@create')->name('add_prod');
+    Route::post('/save_prod', 'ProductController@store')->name('save_prod');
 
-Route::get('/show_orders', 'OrderController@index')->name('show_orders');
+    Route::get('/show_orders', 'OrderController@index')->name('show_orders');
+    Route::get('/admdashbd', 'AdminPanelController@index')->name('admdashbd');
+    Route::get('/admlogout', 'AdminPanelController@logout')->name('admlogout');
+});
+
+Route::get('/adminregipage', 'AdminPanelController@adminRegisterPage')->name('adminregipage');
+Route::post('/admregister', 'AdminPanelController@registerAdmin')->name('admregister');
+
+Route::get('/adminloginpage', 'AdminPanelController@adminLoginPage')->name('adminloginpage');
+Route::post('/admlogin', 'AdminPanelController@login')->name('admlogin');
 
 
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 
 //front end
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

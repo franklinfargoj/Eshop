@@ -5,14 +5,17 @@ table, th, td {
 }
 </style>
 
+@if (Auth::check())    
+<a href="{{ url('admlogout') }}"> <h5>Logout</h5></a>
+<a href="{{ url('admdashbd') }}"> <h5>Dashboard</h5></a>
+@endif
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                
-
-                <div class="card-body">
+           <div class="card-body">
                     <form>
 
                         <div class="row">
