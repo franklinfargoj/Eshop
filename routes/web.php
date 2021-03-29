@@ -24,6 +24,10 @@ Route::get('/show_prod', 'ProductController@index')->name('show_prod');
 Route::get('/add_prod', 'ProductController@create')->name('add_prod');
 Route::post('/save_prod', 'ProductController@store')->name('save_prod');
 
+Route::get('/show_orders', 'OrderController@index')->name('show_orders');
+
+
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
