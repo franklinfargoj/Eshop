@@ -51,10 +51,18 @@ class AdminPanelController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
-            'password' => 'required|string'
+            'password' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return redirect('adminloginpage')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return view('admin.register_login.dashboard');
