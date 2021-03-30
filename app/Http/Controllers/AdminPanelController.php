@@ -22,6 +22,17 @@ class AdminPanelController extends Controller
 
     public function registerAdmin(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255|unique:users', 
+            'password' => 'required|between:8,255|confirmed'
+         ]);
+
+        if ($validator->fails()) {
+            return redirect('adminregipage')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         User::create([
             'name' => 'admin',
             'phone_number' => 'admin',
@@ -29,7 +40,6 @@ class AdminPanelController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-
         return redirect('adminloginpage')->with('success', 'Registered successfully!');     
     }
 
@@ -43,7 +53,7 @@ class AdminPanelController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email',
-            'password' => 'required|string',
+            'password' => 'required|string'
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
@@ -55,7 +65,6 @@ class AdminPanelController extends Controller
 
     public function logout() {
         Auth::logout();
-  
         return redirect('adminloginpage');
     }
   

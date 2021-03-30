@@ -4,6 +4,10 @@
 <a href="{{ url('adminloginpage') }}"><h5>Admin Login</h5></a>
 
 
+    @if($errors->any())
+        {!! implode('', $errors->all('<div>:message</div>')) !!}
+    @endif
+
     <form method="POST" action="{{ route('admregister') }}">
     @csrf
 
@@ -27,7 +31,7 @@
 
     <div>
     Confirm password
-    <input type='password' name="confirm_password">
+    <input type='password' name="password_confirmation">
     </div>
     <br><br>
 
